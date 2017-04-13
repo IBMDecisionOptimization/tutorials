@@ -1,36 +1,22 @@
-# IBM® Decision Optimization Modeling for Python (DOcplex)
+# IBM® Decision Optimization Tutorials for Python (DOcplex)
 
-Welcome to the IBM® Decision Optimization Modeling for Python.
+Welcome to the IBM® Decision Optimization Tutorials.
 Licensed under the Apache License v2.0.
 
-With this library, you can quickly and easily add the power of optimization to
-your application. You can model your problems by using the Python API and solve
-them on the cloud with the IBM® Decision Optimization on Cloud service or on
-your computer with IBM® ILOG CPLEX Optimization Studio.
+With these tutorials, you will learn the concepts of Mathematical Optimization.
 
-This library is composed of 2 modules:
+This library is composed of 2 Jupyter notebooks:
 
-* IBM® Decision Optimization CPLEX Optimizer Modeling for Python - with namespace docplex.mp
-* IBM® Decision Optimization CP Optimizer Modeling for Python - with namespace docplex.cp
+* Linear Programming discovery
+* Beyond Linear Programming
 
-Solving with CPLEX locally requires that IBM® ILOG CPLEX Optimization Studio V12.6.3 or V12.7.0 
-is installed on your machine.
+You just need to import them in a Jupyter Notebook environment.
 
-Solving with the IBM Decision Optimization on Cloud service requires that you
-register for an account and get the API key.
-
-This library is numpy friendly.
-
-## Install the library
-
-```
-   pip install docplex
-```
-
-## Get the documentation and examples
-
-* [Documentation](https://github.com/IBMDecisionOptimization/docplex-doc)
-* [Examples](https://github.com/IBMDecisionOptimization/docplex-examples)
+To be able to run those notebooks successfully, you will need to have any of the following options:
+- be in IBM DataScience Experience Desktop or Local editions.
+- be in IBM DataScience Experience Cloud edition with a subscription to IBM Decision Optimization on Cloud service (30 days free offer available)
+- be on your machine with an installation CPLEX Optimization Studio
+- be on your machine with a subscription to IBM Decision Optimization on Cloud service (30 days free offer available)
 
 ## Get your IBM® Decision Optimization on Cloud API key
 
@@ -54,15 +40,6 @@ Decision Optimization on Cloud service.
 - Faculty members, research professionals at accredited institutions can get access to an unlimited version of CPLEX through the
  [IBM® Academic Initiative](http://www-304.ibm.com/ibm/university/academic/pub/page/ban_ilog_programming).
 
-## Dependencies
-
-These third-party dependencies are automatically installed with ``pip``
-
-- [docloud](https://pypi.python.org/pypi/docloud)
-- [enum34](https://pypi.python.org/pypi/enum34)
-- [futures](https://pypi.python.org/pypi/futures)
-- [requests](https://pypi.python.org/pypi/requests)
-- [six](https://pypi.python.org/pypi/six)
 
 ## License
 
