@@ -12173,12 +12173,12 @@ Planning problems (for example, critical path analysis for project planning)</p>
 <p>An arc can be <em>directed</em>, which means than an arc $a_{ij}$ from node $i$ to node $j$ is different from arc $a_ji$ that begins at node $j$ and ends at node $i$.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_5.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_5.png?raw=true " >
 </ul><p>A sequence of arcs connecting two nodes is called a chain. Each arc in a chain shares exactly one node with the preceding arc.</p>
 <p>When all the arcs in a chain are directed such that it is possible to traverse the chain in the directions of the arcs from the start node to the end node, it is called a path.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_6.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_6.png?raw=true " >
 </ul><h2 id="Different-types-of-network-problems">Different types of network problems<a class="anchor-link" href="#Different-types-of-network-problems">&#182;</a></h2><p>he following are some well-known types of network problems:</p>
 <ul>
 <li>Transportation problem</li>
@@ -12201,7 +12201,7 @@ Planning problems (for example, critical path analysis for project planning)</p>
 <p>Such a problem can be depicted in a graph, with supply nodes, demand nodes, and connecting arcs.  The supply capacity is indicated with the supply nodes, while the demand is indicated with the demand nodes, and the transportation costs are indicated on the arcs.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_8.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_8.png?raw=true " >
 </ul><p>The LP formulation involves one type of variable, namely x(i,j) representing the quantity transported from supply node i to demand node j.  The objective is to minimize the total transportation cost across all arcs.  The constraints are flow conservation constraints.  The first two constraints state that the outflow from each supply node should be less than or equal to the supply capacity.  The next three constraints state that the inflow into each demand node should equal the demand at that node.   The domain for the shipments on the allowable arcs is set to be greater than or equal to zero, while the shipment quantities on the disallowed arcs are set to zero.</p>
 <p>Even though arcs (1,4) and (2,3) do not exist in the graph, the variables are included in the slide to show the special structure of the transportation problem.  If you were to formulate such a model in practice, you’d simply exclude these variables.</p>
 
@@ -12451,7 +12451,7 @@ x_2_4 = 10.000
 <h2 id="The-Transshipment-Problem">The Transshipment Problem<a class="anchor-link" href="#The-Transshipment-Problem">&#182;</a></h2><p>The transshipment problem is similar to the transportation problem, except that intermediate nodes exist in addition to the supply and demand nodes.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_10.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_10.png?raw=true " >
 </ul><p>In this example, nodes 3 and 4 are intermediate nodes.</p>
 <p>The LP formulation is also similar, in the sense that it involves an objective to minimize the transportation cost across all arcs, and a set of flow conservation constraints.  The first two constraints are for the supply nodes, and state that the outflow from each supply node should equal the capacity of that node, plus any inflow into that same node.  The next two constraints are for the intermediate nodes, and state that the inflow into an intermediate node should equal the outflow out of that node.  The last two constraints are for the demand nodes, and state that the inflow into each demand node should equal the demand at that node.  The domain for the variables is to be greater than or equal to zero.</p>
 <p>It is possible to write the transshipment problem as a transportation problem in order to use specialized algorithms that exploit the structure of transportation problem. This conversion is not covered as part of this course because CPLEX Optimizer does this conversion automatically, but you can find details in the textbooks listed at the end of this course</p>
@@ -12467,7 +12467,7 @@ x_2_4 = 10.000
 <h2 id="The-Assignment-Problem">The Assignment Problem<a class="anchor-link" href="#The-Assignment-Problem">&#182;</a></h2><p>The Assignment Problem is the problem of assigning one set of items to another, while optimizing a given objective.  For example, the problem of assigning workers to jobs so as to minimize the hiring costs.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_11.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_11.png?raw=true " >
 </ul><p>In this example, the workers are represented by nodes 1 through 3, while the jobs are represented with nodes A, B and C.  The cost of assigning a worker to a job is shown on each arc.  The objective is to minimize the total assignment cost.  Again, the constraints can be seen as flow conservation constraints.  The first three constraints state that each job is filled by exactly one person, while the last three constraints state that each person is assigned to exactly one job.  The variables should now take a value of 1 if worker i is assigned to job j, and zero otherwise.</p>
 <p>This problem is a special case of the transportation problem, with each supply node capacity set to one, and each demand set to 1.  What’s also important to know is that even though the variables must take 0-1 values, they can be declared as continuous variables due to the integrality property, namely that if all capacity and demand quantities are integer, the variables will take integer values.</p>
 
@@ -12482,7 +12482,7 @@ x_2_4 = 10.000
 <h2 id="The-Shortest-Path-Problem">The Shortest Path Problem<a class="anchor-link" href="#The-Shortest-Path-Problem">&#182;</a></h2><p>The Shortest Path Problem is the problem of finding the shortest path through a network.  For example, to find the minimum travel time between two cities in a network of cities.  The shortest path problem is a special case of the transshipment problem, where there is exactly one supply node and one demand node, and the supply and demand are both equal to 1.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_12.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_12.png?raw=true " >
 </ul><p>In this example, each node represents a city, and each arc represents the road connecting two cities.  The travel time is indicated on each arc.  The variable x(i, j) takes a value of 1 if the arc between i and j is included in the shortest path, and zero otherwise.  The objective is to minimize the total travel time.  As with the other network problems, the constraints can be seen as flow conservation constraints.  A constraint exists for each node (or each city) and the constraints state that exactly one arc should be chosen into each city, and exactly one arc should be chosen out of each city.</p>
 <p>Again, even though the x variables must take 0-1 values, they can be declared as continuous due to the integrality property (that is, all the capacity and demand quantities are integer).</p>
 
@@ -12499,7 +12499,7 @@ x_2_4 = 10.000
 <p>For example, consider a kitchen remodeling project where the home owners are remodeling their kitchen with the eventual goal of hosting a party.  Some of the tasks can be done simultaneously, such as plumbing and electricity, while others can only be started once a previous task is complete, for example the sink can only be installed once the plumbing is complete.  The critical path will indicate the minimum time for completing this project, so that they know when they can have their party.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_13.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_13.png?raw=true " >
 </ul><p>Here, the arcs show the task durations, while the nodes show the task start times.  For modeling purposes, let t(i) be the start time of the tasks originating at node i.  The objective is to minimize the project completion time, namely t7.  The constraints indicate the task duration and precedence.  For example, the third constraint indicates that the minimum time between starting the sink installation (that is, node 3), and starting the plumbing (that is, node 1) is 3 days.  Arcs 3-2 and 4-2 are dummy tasks required to complete the model.  Such dummy tasks have no minimum time associated with them, but are used to model precedence involving more than one preceding tasks of varying duration, in this case that the plumbing, electricity, and appliance order time must be complete before appliances can be installed.</p>
 <p>In this graph, it’s easy to see that the critical path lies on nodes 0 – 2 – 6 – 7, with a total length of 19 days.  Therefore, any delay in the appliance ordering or installation will delay the party date.</p>
 <p>Large projects can lead to very complex networks, and specialized algorithms exist for critical path analysis.</p>
@@ -12539,12 +12539,12 @@ The finance sector, for example stock portfolio optimization</p>
 <p>All LPs are convex, because an LP involves the minimization of a linear function over a feasible region defined by a set of linear functions, and linear functions are convex.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_19.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_19.png?raw=true " >
 </ul><h2 id="Approximating-a-non-linear-program-with-piecewise-linear-functions">Approximating a non-linear program with piecewise-linear functions<a class="anchor-link" href="#Approximating-a-non-linear-program-with-piecewise-linear-functions">&#182;</a></h2><p>A convex nonlinear function can be approximated by a set of linear functions, as shown in the next figure. This could be used to allow solution with LP techniques.</p>
 <p>Such an approximate function consisting of several linear line segments is called a <em>piecewise linear</em> function.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_21.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_21.png?raw=true " >
 </ul><p>We will start by discussing this approximation.</p>
 <p>Piecewise linear programming is used when dealing with functions consisting of several linear segments. Examples of where this might be appropriate are piecewise linear approximations of convex nonlinear functions, and piecewise linear functions representing economies of scale (for example a unit cost that changes when a certain number of units are ordered.)</p>
 <h2 id="An-example-of-piecewise-linear-programming:-economies-of-scale">An example of piecewise linear programming: economies of scale<a class="anchor-link" href="#An-example-of-piecewise-linear-programming:-economies-of-scale">&#182;</a></h2><p>Consider a transportation problem in which the transportation cost between an origin,$i$, and a destination, $j$, depends on the size of the shipment, $ship_{ij}$:</p>
@@ -12558,7 +12558,7 @@ The finance sector, for example stock portfolio optimization</p>
 <p>If you graph this function, you see that at each breakpoint, the slope of the line changes. The section of the graph between two breakpoints is a linear piece.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_25.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_25.png?raw=true " >
 </ul><p>The diagram shows that the total shipping cost is evaluated by 3 different linear functions, each determined by the quantity shipped $Q$:</p>
 <ul>
 <li>0.40 * items when $Q \le 1000$,</li>
@@ -13307,7 +13307,7 @@ To ensure we get integer values in the solution, we can use integer decision var
 <p>As expected, the IP model returns integer values as optimal solution.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_39.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_39.png?raw=true " >
 </ul><p>This graphic shows the new feasible region where the dots indicate the feasible solutions.  That is, solutions where the variables take only integer values.  This graphic is not according to scale, because it’s not possible to indicate all the integer points graphically for this example. What you should take away from this graphic, is that the feasible region is now a collection of points, as opposed to a solid area.  Because, in this example, the integer solution does not lie on an extreme point of the continuous feasible region, LP techniques would not find the integer optimum.  To find the integer optimum, you should use an integer programming technique.</p>
 
 </div>
@@ -13345,26 +13345,26 @@ The solution to the LP relaxation of a maximization IP, such as this, provides a
 The current lower bound is minus infinity.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_43.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_43.png?raw=true " >
 </ul><p>In this case, the solution is fractional and the tree search continues in order to try and find an integer solution.</p>
 <h3 id="Branch-and-Bound:-branching-on-a-variable">Branch and Bound: branching on a variable<a class="anchor-link" href="#Branch-and-Bound:-branching-on-a-variable">&#182;</a></h3><p>The algorithm next chooses one of the variables to branch on, in this case $x$, and adds two constraints to create two subproblems.<br>
 These two constraints are based on the relaxed value of x, namely one and three elevenths.  In the one subproblem, $x$ is required to be less than or equal to one, and in the other problem, $x$ is required to be greater than or equal to two, in order to eliminate the fractional solution found.<br>
 IP2 gives another fractional solution, but IP3 gives an integer solution.  This integer solution of 10 is the new lower bound to the original maximization problem, because it is the best current solution to the maximization problem.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_44.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_44.png?raw=true " >
 </ul><p>The algorithm will terminate when the gap between the upper and lower bounds is sufficiently small, but at this point there is still more of the tree to explore.</p>
 <h3 id="Branch-and-Bound:-iteration">Branch and Bound: iteration<a class="anchor-link" href="#Branch-and-Bound:-iteration">&#182;</a></h3><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_45.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_45.png?raw=true " >
 </ul><p>Two new subproblems are now generated from IP2, and these constraints are determined by the fractional value of z in IP2.  In IP4, z must be less than or equal to 5, and in IP3 z must be greater than or equal to 6. IP4 gives another fractional solution, while IP3 is infeasible and can be pruned.  When a node is pruned, the node is not explored further in the tree.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_46.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_46.png?raw=true " >
 </ul><p>Next, two more subproblems are created from IP4, namely one with y less than or equal to zero in IP6, and one with y greater than or equal to 1 in IP5.  IP6 yields an integer solution of 11, which is an improvement of the previously found lower bound of 10. IP5 gives a fractional solution and can be explored further.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1_47.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1_47.png?raw=true " >
 </ul><p>So another two subproblems are created from IP5, namely IP8 with z less than or equal to 4, and IP7 with z greater than or equal to 5.  However, the constraint added for IP4 specifies that z must be less than or equal to 5, so node IP7 immediately yields an integer solution with an objective value of 11, which is the same objective as for IP6.  IP8 yields an integer solution with objective value of 9, which is a worse solution than those previously found and IP8 can therefore be discarded.</p>
 <p>The optimal solution reported is the integer solution with the best objective value that was found first, namely the solution to IP6.</p>
 

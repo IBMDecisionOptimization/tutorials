@@ -12179,7 +12179,7 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Characteristics-of-a-linear-program">Characteristics of a linear program<a class="anchor-link" href="#Characteristics-of-a-linear-program">&#182;</a></h2><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/1.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/1.png?raw=true " >
 </ul>
 </div>
 </div>
@@ -12522,7 +12522,7 @@ This is done in four steps:</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Feasible-set-of-solutions">Feasible set of solutions<a class="anchor-link" href="#Feasible-set-of-solutions">&#182;</a></h4><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/19.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/19.png?raw=true " >
 </ul><p>This graphic shows the feasible region for the telephone problem.<br>
 Recall that the feasible region of an LP is the region delimited by the constraints, and it represents all feasible solutions. In this graphic, the variables DeskProduction and CellProduction are abbreviated to be desk and cell instead.  Look at this diagram and search intuitively for the optimal solution.  That is, which combination of desk and cell phones will yield the highest profit.</p>
 
@@ -12536,7 +12536,7 @@ Recall that the feasible region of an LP is the region delimited by the constrai
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="The-optimal-solution">The optimal solution<a class="anchor-link" href="#The-optimal-solution">&#182;</a></h4><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/20.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/20.png?raw=true " >
 </ul><p>To find the optimal solution to the LP, you must find values for the decision variables, within the feasible region, that maximize profit as defined by the objective function. In this problem, the objective function is to maximize
  $$12 * desk + 20 * cell
  $$</p>
@@ -12620,7 +12620,7 @@ By default, the CPLEX® Optimizer reports the first optimal solution found.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Example-of-multiple-optimal-solutions">Example of multiple optimal solutions<a class="anchor-link" href="#Example-of-multiple-optimal-solutions">&#182;</a></h4><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/22.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/22.png?raw=true " >
 </ul><p>This graphic shows an example of an LP with multiple optimal solutions.  This can happen when the slope of the objective function is the same as the slope of one of the constraints, in this case line AB.  All the points on line AB are optimal solutions, with the same objective value, because they are all extreme points within the feasible region.</p>
 
 </div>
@@ -12661,7 +12661,7 @@ The model and data are correct, but represent a real-world conflict in the syste
 <p>DOcplex helps you identify potential causes of infeasibilities, and it will also suggest changes to make the model feasible.</p>
 <h4 id="An-example-of-infeasible-problem">An example of infeasible problem<a class="anchor-link" href="#An-example-of-infeasible-problem">&#182;</a></h4><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/26.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/26.png?raw=true " >
 </ul><p>This graphic shows an example of an infeasible constraint set for the telephone production problem.  Assume in this case that the person entering data had accidentally entered lower bounds on the production of 1100 instead of 100.  The arrows show the direction of the feasible region with respect to each constraint.  This data entry error moves the lower bounds on production higher than the upper bounds from the assembly and painting constraints, meaning that the feasible region is empty and there are no possible solutions.</p>
 
 </div>
@@ -12903,7 +12903,7 @@ Note that we use the Python decrement operator.</p>
 <h4 id="Unbounded-feasible-region">Unbounded feasible region<a class="anchor-link" href="#Unbounded-feasible-region">&#182;</a></h4><p>The telephone production problem would become unbounded if, for example, the constraints on the assembly and painting time were neglected. The feasible region would then look as in this diagram where the objective value can increase without limit, up to infinity, because there is no upper boundary to the region.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/32.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/32.png?raw=true " >
 </ul>
 </div>
 </div>
@@ -12923,16 +12923,16 @@ Note that we use the Python decrement operator.</p>
 <p>The following diagram illustrates how the simplex algorithm traverses the boundary of the feasible region for the telephone production problem.  The algorithm, starts somewhere along the edge of the shaded feasible region, and advances vertex-by-vertex until arriving at the vertex that also intersects the optimal objective line.  Assume it starts at the red dot indicated on the diagam.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/36.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/36.png?raw=true " >
 </ul><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/37.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/37.png?raw=true " >
 </ul><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/38.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/38.png?raw=true " >
 </ul><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/39.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/39.png?raw=true " >
 </ul><h3 id="The-revised-simplex-algorithm">The revised simplex algorithm<a class="anchor-link" href="#The-revised-simplex-algorithm">&#182;</a></h3><p>To improve the efficiency of the simplex algorithm, George Dantzig and W. Orchard-Hays revised it in 1953. CPLEX uses the revised simplex algorithm, with a number of improvements. The CPLEX Optimizers are particularly efficient and can solve very large problems rapidly. You can tune some CPLEX Optimizer parameters to change the algorithmic behavior according to your needs.</p>
 
 </div>
@@ -12946,7 +12946,7 @@ Note that we use the Python decrement operator.</p>
 <h3 id="The-Dual-simple-algorithm">The Dual simple algorithm<a class="anchor-link" href="#The-Dual-simple-algorithm">&#182;</a></h3><h4 id="The-dual-of-a-LP">The dual of a LP<a class="anchor-link" href="#The-dual-of-a-LP">&#182;</a></h4><p>The concept of duality is important in linear programming.  Every LP problem has an associated LP problem known as its <em>dual</em>. The dual of this associated problem is the original LP problem (known as the primal problem). If the primal problem is a minimization problem, then the dual problem is a maximization problem and vice versa.</p>
 <h4 id="A-primal-dual-pair">A primal-dual pair<a class="anchor-link" href="#A-primal-dual-pair">&#182;</a></h4><p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/42.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/42.png?raw=true " >
 </ul><h2 id="Primal-(P)------"><em>Primal (P)</em>      <a class="anchor-link" href="#Primal-(P)------">&#182;</a></h2><p>$max\ z=\sum_{i} c_{i}x_{i}$</p>
 <h2 id="Dual-(D)"><em>Dual (D)</em><a class="anchor-link" href="#Dual-(D)">&#182;</a></h2><p>$min\ w= \sum_{j}b_{j}y_{j}$</p>
 <ul>
@@ -13240,7 +13240,7 @@ Total time on 16 threads = 0.12 sec. (0.02 ticks)
 <p>This diagram shows how the barrier method works compared to the simplex method.  As you can see, the simplex method traverses the edge of the feasible region, while the barrier method moves through the interior, with a predictor-corrector determining the path.  In general, it’s a good idea to experiment with different algorithms in CPLEX when trying to improve performance.</p>
 <p><p></p>
 <ul>
-<img src = "https://pages.github.com/IBMDecisionOptimization/tutorials/jupyter/training/52.png?raw=true " >
+<img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/52.png?raw=true " >
 </ul>
 </div>
 </div>
