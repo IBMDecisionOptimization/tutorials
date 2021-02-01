@@ -13124,8 +13124,17 @@ div#notebook {
 </ul>
 <p>You should also be able to describe some of the algorithms used to solve LPs, explain what presolve does, and recognize the elements of an LP in a basic DOcplex model.</p>
 <blockquote><p>This notebook is part of <strong><a href="http://ibmdecisionoptimization.github.io/docplex-doc/">Prescriptive Analytics for Python</a></strong></p>
-<p>It requires either an <a href="http://ibmdecisionoptimization.github.io/docplex-doc/getting_started.html">installation of CPLEX Optimizers</a> or it can be run on <a href="https://www.ibm.com/cloud/watson-studio/&gt;">IBM Watson Studio Cloud</a> (Sign up for a <a href="https://dataplatform.cloud.ibm.com/registration/stepone?context=wdp&amp;apps=all&gt;">free IBM Cloud account</a>
-and you can start using Watson Studio Cloud right away).</p>
+<p>It requires either an <a href="http://ibmdecisionoptimization.github.io/docplex-doc/getting_started.html">installation of CPLEX Optimizers</a> or it can be run on <a href="https://www.ibm.com/products/cloud-pak-for-data/as-a-service/">IBM Cloud Pak for Data as a Service</a> (Sign up for a <a href="https://dataplatform.cloud.ibm.com/registration/stepone?context=wdp&amp;apps=all&gt;">free IBM Cloud account</a>
+and you can start using <code>IBM Cloud Pak for Data as a Service</code> right away).</p>
+<p>CPLEX is available on <i>IBM Cloud Pack for Data</i> and <i>IBM Cloud Pak for Data as a Service</i>:</p>
+<ul>
+<li><i>IBM Cloud Pak for Data as a Service</i>: Depends on the runtime used:<ul>
+<li><i>Python 3.x</i> runtime: Community edition</li>
+<li><i>Python 3.x + DO</i> runtime: full edition</li>
+</ul>
+</li>
+<li><i>Cloud Pack for Data</i>: Community edition is installed by default. Please install the <code>DO</code> addon in <code>Watson Studio Premium</code> for the full edition</li>
+</ul>
 </blockquote>
 <p>Table of contents:</p>
 <ul>
@@ -13294,7 +13303,7 @@ subject\ to: \\
 \ \   0.2\ desk\_production + 0.4\ cell\_production &lt;= 400 \\
 \ \   0.5\ desk\_production + 0.4\ cell\_production &lt;= 490 \\
 $</p>
-<h3 id="Using-DOcplex-to-formulate-the-mathematical-model-in-Python">Using DOcplex to formulate the mathematical model in Python<a class="anchor-link" href="#Using-DOcplex-to-formulate-the-mathematical-model-in-Python">&#182;</a></h3><p>Use the <a href="https://cdn.rawgit.com/IBMDecisionOptimization/docplex-doc/2.0.15/docs/index.html">DOcplex</a> Python library to write the mathematical model in Python.
+<h3 id="Using-DOcplex-to-formulate-the-mathematical-model-in-Python">Using DOcplex to formulate the mathematical model in Python<a class="anchor-link" href="#Using-DOcplex-to-formulate-the-mathematical-model-in-Python">&#182;</a></h3><p>Use the <a href="http://ibmdecisionoptimization.github.io/docplex-doc/">DOcplex</a> Python library to write the mathematical model in Python.
 This is done in four steps:</p>
 <ul>
 <li>create a instance of docplex.mp.Model to hold all model objects</li>
@@ -13318,7 +13327,8 @@ This is done in four steps:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Step-1:-Download-the-library">Step 1: Download the library<a class="anchor-link" href="#Step-1:-Download-the-library">&#182;</a></h3><p>First install <em>docplex</em> if needed.</p>
+<h3 id="Step-1:-Download-the-library">Step 1: Download the library<a class="anchor-link" href="#Step-1:-Download-the-library">&#182;</a></h3><p>Install <code>CPLEX</code> (Community Edition) and <code>docplex</code> if they are not installed.</p>
+<p>In <code>IBM Cloud Pak for Data as a Service</code> notebooks, <code>CPLEX</code> and <code>docplex</code> are preinstalled.</p>
 
 </div>
 </div>
@@ -13326,6 +13336,35 @@ This is done in four steps:</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cplex</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;real_prefix&#39;</span><span class="p">):</span>
+        <span class="c1">#we are in a virtual env.</span>
+        <span class="o">!</span>pip install cplex
+    <span class="k">else</span><span class="p">:</span>
+        <span class="o">!</span>pip install --user cplex
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Installs <code>DOcplex</code>if needed</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -13347,32 +13386,15 @@ This is done in four steps:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Step-2:-Set-up-the-prescriptive-engine">Step 2: Set up the prescriptive engine<a class="anchor-link" href="#Step-2:-Set-up-the-prescriptive-engine">&#182;</a></h3><ul>
-<li>Subscribe to our private cloud offer or Decision Optimization on Cloud solve service <a href="https://developer.ibm.com/docloud">here</a> if you do not want to use a local solver.</li>
-<li>Get the service URL and your personal API key and enter your credentials here if accurate:</li>
-</ul>
+<p>If either <code>CPLEX</code> or <code>docplex</code> where installed in the steps above, you will need to restart your jupyter kernel for the changes to be taken into account.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">key</span> <span class="o">=</span> <span class="kc">None</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Step-3:-Set-up-the-prescriptive-model">Step 3: Set up the prescriptive model<a class="anchor-link" href="#Step-3:-Set-up-the-prescriptive-model">&#182;</a></h3><h4 id="Create-the-model">Create the model<a class="anchor-link" href="#Create-the-model">&#182;</a></h4><p>All objects of the model belong to one model instance.</p>
+<h3 id="Step-2:-Set-up-the-prescriptive-model">Step 2: Set up the prescriptive model<a class="anchor-link" href="#Step-2:-Set-up-the-prescriptive-model">&#182;</a></h3><h4 id="Create-the-model">Create the model<a class="anchor-link" href="#Create-the-model">&#182;</a></h4><p>All objects of the model belong to one model instance.</p>
 
 </div>
 </div>
@@ -13424,7 +13446,7 @@ This is done in four steps:</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Set-up-the-constraints">Set up the constraints<a class="anchor-link" href="#Set-up-the-constraints">&#182;</a></h4><ul>
-<li>Desk and cel phone must both be greater than 100</li>
+<li>Desk and cell phone must both be greater than 100</li>
 <li>Assembly time is limited</li>
 <li>Painting time is limited.</li>
 </ul>
@@ -13518,6 +13540,7 @@ This is done in four steps:</p>
  - number of constraints: 4
    - linear=4
  - parameters: defaults
+ - objective: maximize
  - problem type is: LP
 </pre>
 </div>
@@ -13575,9 +13598,7 @@ Recall that the feasible region of an LP is the region delimited by the constrai
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Solve-with-the-Decision-Optimization-solve-service">Solve with the Decision Optimization solve service<a class="anchor-link" href="#Solve-with-the-Decision-Optimization-solve-service">&#182;</a></h3><p>If url and key are None, the Modeling layer will look for a local runtime, otherwise will use the credentials.</p>
-<p>Look at the documentation for a good understanding of the various solving/generation modes.</p>
-<p>If you're using a Community Edition of CPLEX runtimes, depending on the size of the problem, the solve stage may fail and will need a paying subscription or product installation.</p>
+<h3 id="Solve-with-the-model">Solve with the model<a class="anchor-link" href="#Solve-with-the-model">&#182;</a></h3><p>If you're using a Community Edition of CPLEX runtimes, depending on the size of the problem, the solve stage may fail and will need a paying subscription or product installation.</p>
 <p>In any case, <code>Model.solve()</code> returns a solution object in Python, containing the optimal values of decision variables, if the solve succeeds, or else it returns <code>None</code>.</p>
 
 </div>
@@ -13588,7 +13609,7 @@ Recall that the feasible region of an LP is the region delimited by the constrai
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">print_solution</span><span class="p">()</span>
 </pre></div>
 
@@ -13703,7 +13724,7 @@ The model and data are correct, but represent a real-world conflict in the syste
 <span class="c1"># add a new (infeasible) constraint</span>
 <span class="n">im</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="n">idesk</span> <span class="o">&gt;=</span> <span class="mi">1100</span><span class="p">);</span>
 <span class="c1"># solve the new proble, we expect a result of None as the model is now infeasible</span>
-<span class="n">ims</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+<span class="n">ims</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">ims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- model is infeasible&#39;</span><span class="p">)</span>
 </pre></div>
@@ -13783,7 +13804,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Implement-the-soft-constraint-model-using-DOcplex">Implement the soft constraint model using DOcplex<a class="anchor-link" href="#Implement-the-soft-constraint-model-using-DOcplex">&#182;</a></h4><p>First and extra variable for overtime, with an upper bound of 40. This suffices to express the hard limit on overtime.</p>
+<h4 id="Implement-the-soft-constraint-model-using-DOcplex">Implement the soft constraint model using DOcplex<a class="anchor-link" href="#Implement-the-soft-constraint-model-using-DOcplex">&#182;</a></h4><p>First add an extra variable for overtime, with an upper bound of 40. This suffices to express the hard limit on overtime.</p>
 
 </div>
 </div>
@@ -13858,7 +13879,7 @@ Note that we use the Python decrement operator.</p>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">print_solution</span><span class="p">()</span>
 </pre></div>
 
@@ -13921,7 +13942,7 @@ Note that we use the Python decrement operator.</p>
 <li>Dual-simplex Optimizer</li>
 <li>Barrier Optimizer</li>
 </ul>
-<h3 id="The-simplex-algorithm">The simplex algorithm<a class="anchor-link" href="#The-simplex-algorithm">&#182;</a></h3><p>The simplex algorithm, developed by George Dantzig in 1947, was the first generalized algorithm for solving LP problems. It is the basis of many optimization algorithms. The simplex method is an iterative method. It starts with an initial feasible solution, and then tests to see if it can improve the result of the objective function. It continues until the objective function cannot be further improved.</p>
+<h3 id="The-Simplex-algorithm">The Simplex algorithm<a class="anchor-link" href="#The-Simplex-algorithm">&#182;</a></h3><p>The Simplex algorithm, developed by George Dantzig in 1947, was the first generalized algorithm for solving LP problems. It is the basis of many optimization algorithms. The simplex method is an iterative method. It starts with an initial feasible solution, and then tests to see if it can improve the result of the objective function. It continues until the objective function cannot be further improved.</p>
 <p>The following diagram illustrates how the simplex algorithm traverses the boundary of the feasible region for the telephone production problem.  The algorithm, starts somewhere along the edge of the shaded feasible region, and advances vertex-by-vertex until arriving at the vertex that also intersects the optimal objective line.  Assume it starts at the red dot indicated on the diagam.</p>
 <p><p></p>
 <ul>
@@ -13935,7 +13956,7 @@ Note that we use the Python decrement operator.</p>
 </ul><p><p></p>
 <ul>
 <img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/39.png?raw=true" >
-</ul><h3 id="The-revised-simplex-algorithm">The revised simplex algorithm<a class="anchor-link" href="#The-revised-simplex-algorithm">&#182;</a></h3><p>To improve the efficiency of the simplex algorithm, George Dantzig and W. Orchard-Hays revised it in 1953. CPLEX uses the revised simplex algorithm, with a number of improvements. The CPLEX Optimizers are particularly efficient and can solve very large problems rapidly. You can tune some CPLEX Optimizer parameters to change the algorithmic behavior according to your needs.</p>
+</ul><h3 id="The-Revised-Simplex-algorithm">The Revised Simplex algorithm<a class="anchor-link" href="#The-Revised-Simplex-algorithm">&#182;</a></h3><p>To improve the efficiency of the Simplex algorithm, George Dantzig and W. Orchard-Hays revised it in 1953. CPLEX uses the Revised Simplex algorithm, with a number of improvements. The CPLEX Optimizers are particularly efficient and can solve very large problems rapidly. You can tune some CPLEX Optimizer parameters to change the algorithmic behavior according to your needs.</p>
 
 </div>
 </div>
@@ -13943,7 +13964,7 @@ Note that we use the Python decrement operator.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Dual-simple-algorithm">The Dual simple algorithm<a class="anchor-link" href="#The-Dual-simple-algorithm">&#182;</a></h3><h4 id="The-dual-of-a-LP">The dual of a LP<a class="anchor-link" href="#The-dual-of-a-LP">&#182;</a></h4><p>The concept of duality is important in linear programming.  Every LP problem has an associated LP problem known as its <em>dual</em>. The dual of this associated problem is the original LP problem (known as the primal problem). If the primal problem is a minimization problem, then the dual problem is a maximization problem and vice versa.</p>
+<h3 id="The-Dual-Simplex-algorithm">The Dual Simplex algorithm<a class="anchor-link" href="#The-Dual-Simplex-algorithm">&#182;</a></h3><h4 id="The-dual-of-a-LP">The dual of a LP<a class="anchor-link" href="#The-dual-of-a-LP">&#182;</a></h4><p>The concept of duality is important in Linear Programming (LP).  Every LP problem has an associated LP problem known as its <em>dual</em>. The dual of this associated problem is the original LP problem (known as the primal problem). If the primal problem is a minimization problem, then the dual problem is a maximization problem and vice versa.</p>
 <h4 id="A-primal-dual-pair">A primal-dual pair<a class="anchor-link" href="#A-primal-dual-pair">&#182;</a></h4><p><p></p>
 <ul>
 <img src = "https://ibmdecisionoptimization.github.io/tutorials/jupyter/training/42.png?raw=true" >
@@ -13960,10 +13981,10 @@ Note that we use the Python decrement operator.</p>
 <p>The dual price of a non-binding constraint is zero. That is, changing the right hand side of the constraint will not affect the objective value.</p>
 <p>The dual price of a binding constraint can help you make decisions regarding the constraint.</p>
 <p>For example, the dual price of a binding resource constraint can be used to determine whether more of the resource should be purchased or not.</p>
-<h4 id="The-dual-simplex-algorithm">The dual simplex algorithm<a class="anchor-link" href="#The-dual-simplex-algorithm">&#182;</a></h4><p>The simplex algorithm works by finding a feasible solution and moving progressively toward optimality.</p>
-<p>The dual simplex algorithm implicitly uses the dual to try and find an optimal solution to the primal as early as it can, and regardless of whether the solution is feasible or not.</p>
+<h4 id="The-Dual-Simplex-algorithm">The Dual Simplex algorithm<a class="anchor-link" href="#The-Dual-Simplex-algorithm">&#182;</a></h4><p>The Simplex algorithm works by finding a feasible solution and moving progressively toward optimality.</p>
+<p>The Dual Simplex algorithm implicitly uses the dual to try and find an optimal solution to the primal as early as it can, and regardless of whether the solution is feasible or not.</p>
 <p>It then moves from one vertex to another, gradually decreasing the infeasibility while maintaining optimality, until an optimal feasible solution to the primal problem is found.</p>
-<p>In CPLEX, the Dual-simplex Optimizer is the first choice for most LP problems.</p>
+<p>In CPLEX, the Dual-Simplex Optimizer is the first choice for most LP problems.</p>
 
 </div>
 </div>
@@ -13971,8 +13992,8 @@ Note that we use the Python decrement operator.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Basic-solutions-and-basic-variables">Basic solutions and basic variables<a class="anchor-link" href="#Basic-solutions-and-basic-variables">&#182;</a></h3><p>You learned earlier that the simplex algorithm travels from vertex to vertex to search for the optimal solution. 
-A solution at a vertex is known as a <em>basic</em> solution. Without getting into too much detail, it's worth knowing that part of the simplex algorithm involves setting a subset of variables to zero at each iteration. 
+<h3 id="Basic-solutions-and-basic-variables">Basic solutions and basic variables<a class="anchor-link" href="#Basic-solutions-and-basic-variables">&#182;</a></h3><p>You learned earlier that the Simplex algorithm travels from vertex to vertex to search for the optimal solution. 
+A solution at a vertex is known as a <em>basic</em> solution. Without getting into too much detail, it's worth knowing that part of the Simplex algorithm involves setting a subset of variables to zero at each iteration. 
 These variables are known as non-basic variables. The remaining variables are the <em>basic</em> variables. The concepts of basic solutions and variables are relevant in the definition of reduced costs that follows next.</p>
 
 </div>
@@ -14092,7 +14113,7 @@ In order to determine whether multiple optimal solutions exist, you can examine 
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># revert soft constraints</span>
 <span class="n">ct_assembly</span><span class="o">.</span><span class="n">rhs</span> <span class="o">=</span> <span class="mi">440</span>
-<span class="n">s3</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 <span class="c1"># now get slack value for assembly constraint: expected value is 40</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;* slack value for assembly time constraint is: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ct_assembly</span><span class="o">.</span><span class="n">slack_value</span><span class="p">))</span>
@@ -14151,7 +14172,7 @@ We won't go into details here, it suffices to know this parameter accepts an int
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">lpmethod</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">log_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">log_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14168,18 +14189,19 @@ We won't go into details here, it suffices to know this parameter accepts an int
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPXPARAM_Read_DataCheck                          1
+<pre>Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Read_DataCheck                          1
 CPXPARAM_LPMethod                                4
 Tried aggregator 1 time.
 LP Presolve eliminated 2 rows and 1 columns.
 Reduced LP has 2 rows, 2 columns, and 4 nonzeros.
-Presolve time = 0.00 sec. (0.00 ticks)
-Parallel mode: using up to 8 threads for barrier.
+Presolve time = 0.02 sec. (0.00 ticks)
+Parallel mode: using up to 12 threads for barrier.
 Number of nonzeros in lower triangle of A*A&#39; = 1
 Using Approximate Minimum Degree ordering
-Total time for automatic ordering = 0.02 sec. (0.00 ticks)
+Total time for automatic ordering = 0.00 sec. (0.00 ticks)
 Summary statistics for Cholesky factor:
-  Threads                   = 8
+  Threads                   = 12
   Rows in Factor            = 2
   Integer space required    = 2
   Total non-zeros in factor = 3
@@ -14193,8 +14215,10 @@ Summary statistics for Cholesky factor:
    5   2.2333332e+04   2.2333335e+04  6.10e-14  0.00e+00  1.96e-08  2.38e+07
    6   2.2333333e+04   2.2333333e+04  3.11e-12  0.00e+00  1.95e-12  1.51e+11
    7   2.2333333e+04   2.2333333e+04  1.04e-12  0.00e+00  1.28e-14  1.51e+15
-Barrier time = 0.05 sec. (0.01 ticks)
-Parallel mode: deterministic, using up to 8 threads for concurrent optimization.
+Barrier time = 0.03 sec. (0.01 ticks)
+Parallel mode: deterministic, using up to 12 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
 
 Dual crossover.
   Dual:  Fixed no variables.
@@ -14202,9 +14226,9 @@ Dual crossover.
 
 Dual simplex solved model.
 
-Total crossover time = 0.05 sec. (0.00 ticks)
+Total crossover time = 0.00 sec. (0.00 ticks)
 
-Total time on 8 threads = 0.09 sec. (0.01 ticks)
+Total time on 12 threads = 0.05 sec. (0.01 ticks)
 </pre>
 </div>
 </div>
@@ -14231,7 +14255,7 @@ Total time on 8 threads = 0.09 sec. (0.01 ticks)
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Barrier-methods">Barrier methods<a class="anchor-link" href="#Barrier-methods">&#182;</a></h3><p>Most of the CPLEX Optimizers for MP call upon the basic simplex method or some variation of it.</p>
 <p>Some, such as the Barrier Optimizer, use alternative methods.</p>
-<p>In graphical terms, the simplex algorithm starts along the edge of the feasible region and searches for an optimal vertex.</p>
+<p>In graphical terms, the Simplex Algorithm starts along the edge of the feasible region and searches for an optimal vertex.</p>
 <p>The barrier method starts somewhere inside the feasible region – in other words, it avoids the “barrier” that is created by the constraints, and burrows through the feasible region to find the optimal solution.</p>
 <p>In its search, the method uses what is known as a predictor-corrector algorithm that constantly adjusts its path through the center of the feasible region (the central path).</p>
 <p>This diagram shows how the barrier method works compared to the simplex method.  As you can see, the simplex method traverses the edge of the feasible region, while the barrier method moves through the interior, with a predictor-corrector determining the path.  In general, it’s a good idea to experiment with different algorithms in CPLEX when trying to improve performance.</p>
@@ -14281,9 +14305,9 @@ $</p>
 <li>feasible region</li>
 <li>infeasible</li>
 <li>unbounded</li>
-<li>slack</li>
-<li>reduced cost</li>
-<li>degenerate</li>
+<li>slacks</li>
+<li>reduced costs</li>
+<li>degeneracy</li>
 </ul>
 </li>
 <li>Describe some of the algorithms used to solve LPs</li>
@@ -14299,13 +14323,26 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><ul>
 <li><a href="http://ibmdecisionoptimization.github.io/docplex-doc/">CPLEX Modeling for Python documentation</a></li>
-<li><a href="https://developer.ibm.com/docloud/">Decision Optimization on Cloud</a></li>
+<li><a href="https://www.ibm.com/analytics/decision-optimization">IBM Decision Optimization</a></li>
 <li>Need help with DOcplex or to report a bug? Please go <a href="https://stackoverflow.com/questions/tagged/docplex">here</a>.</li>
 <li>Contact us at dofeedback@wwpdl.vnet.ibm.com.</li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>

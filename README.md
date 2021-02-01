@@ -10,29 +10,18 @@ This library is composed of 2 Jupyter notebooks:
 * Linear Programming discovery
 * Beyond Linear Programming
 
-You just need to import them in a Jupyter Notebook environment.
+These notebooks are part of **[Prescriptive Analytics for Python](http://ibmdecisionoptimization.github.io/docplex-doc/)**
 
-To be able to run those notebooks successfully, you will need to have any of the following options:
-- be in IBM DataScience Experience Desktop or Local editions.
-- be in IBM DataScience Experience Cloud edition with a subscription to IBM Decision Optimization on Cloud service (30 days free offer available)
-- be on your machine with an installation CPLEX Optimization Studio
-- be on your machine with a subscription to IBM Decision Optimization on Cloud service (30 days free offer available)
+They require either an [installation of CPLEX Optimizers](http://ibmdecisionoptimization.github.io/docplex-doc/getting_started.html) or they can be run on [IBM Cloud Pak for Data as a Service](https://www.ibm.com/products/cloud-pak-for-data/as-a-service/) (Sign up for a [free IBM Cloud account](https://dataplatform.cloud.ibm.com/registration/stepone?context=wdp&apps=all>)
+and you can start using `IBM Cloud Pak for Data as a Service` right away).
 
-## Get your IBM® Decision Optimization on Cloud API key
+CPLEX is available on <i>IBM Cloud Pack for Data</i> and <i>IBM Cloud Pak for Data as a Service</i>:
+- <i>IBM Cloud Pak for Data as a Service</i>: Depends on the runtime used:
+	- <i>Python 3.x</i> runtime: Community edition
+	- <i>Python 3.x + DO</i> runtime: full edition
+- <i>Cloud Pack for Data</i>: Community edition is installed by default. Please install the `DO` addon in `Watson Studio Premium` for the full edition
 
-Optionally, you can run your optimization in the cloud with the IBM
-Decision Optimization on Cloud service.
-   
-- Register for the DOcplexcloud free trial and use it free for 30 days. See [Free trial](https://developer.ibm.com/docloud/try-docloud-free).
- 
-- Get your API key
-    With your free trial, you can generate a key to access the DOcplexcloud API. 
-    Visit the [Get API key & base URL](http://developer.ibm.com/docloud/docs/api-key) page to generate the key once you've registered. 
-    This page also contains the base URL you must use for DOcplexcloud.
-    
-- Copy/paste your API key and service URL where appropriate in the examples to be able to run them, or have a look at *Setting up an optimization engine* section of the documentation
-
-## Get your IBM® ILOG CPLEX Optimization Studio edition
+Additionnaly, you can download  [installation of CPLEX Optimizers](http://ibmdecisionoptimization.github.io/docplex-doc/getting_started.html):
 
 - You can get a free [Community Edition](http://www-01.ibm.com/software/websphere/products/optimization/cplex-studio-community-edition)
  of CPLEX Optimization Studio, with limited solving capabilities in term of problem size.
